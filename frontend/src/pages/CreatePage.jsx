@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { Container, VStack, Heading, useColorModeValue, Box, Input, Button, useToast  } from '@chakra-ui/react'
 import { useProductStore } from '../store/product'
+import { useNavigate } from 'react-router-dom'
 
 const CreatePage = () => {
+	const navigate = useNavigate();
 	const toast = useToast()
 	const [newProduct, setNewProduct] = useState({
 		name: "",
@@ -22,6 +24,7 @@ const CreatePage = () => {
 				status: "success",
 				isClosable: true,
 			})
+			navigate("/");
 		} else {
 			toast({
 				title: "Error",

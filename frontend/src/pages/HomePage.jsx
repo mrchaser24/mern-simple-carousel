@@ -6,8 +6,11 @@ import { ProductCard } from '../components/ProductCard'
 
 const HomePage = () => {
   const {fetchProducts, products} = useProductStore()
+  const filter = `name=${1}&page=${2}`
   useEffect(() => {
-    fetchProducts()
+    console.log("Fetching products...", filter);
+    
+    fetchProducts(filter)
   }, [fetchProducts])
   console.log(products);
   
