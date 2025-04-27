@@ -14,7 +14,7 @@ const Pagination = ({ totalPages, currentPage, onChange}) => {
 	}
 
 	const handlePaginationBtn = (currentPage) => {
-		const totalPage = Math.ceil(133 / 12);
+		const totalPage = Math.ceil(totalPages / 12);
 		const possiblePages = [];
 	
 		if (currentPage === 1) {
@@ -38,7 +38,7 @@ const Pagination = ({ totalPages, currentPage, onChange}) => {
 		console.log("Current Page:", currPage);
 		
 		if (status === 'next') {
-			if (currPage < Math.ceil(133 / 12)) {
+			if (currPage < Math.ceil(totalPages / 12)) {
 				setPage(currPage + 1);
 			}
 		} else if (status === 'prev') {
@@ -75,15 +75,15 @@ const Pagination = ({ totalPages, currentPage, onChange}) => {
 			))}
 
 			
-			{!handlePaginationBtn(currentPage).includes(Math.ceil(133 / 12)-1) && 
+			{!handlePaginationBtn(currentPage).includes(Math.ceil(totalPages / 12)-1) && 
 				<Button> 
 					<IoEllipsisHorizontalSharp fontSize={20}/>
 				</Button>
 			}
-			{!handlePaginationBtn(currentPage).includes(Math.ceil(133 / 12)) && (
-				<Button onClick={() => setPage(Math.ceil(133 / 12))}>
+			{!handlePaginationBtn(currentPage).includes(Math.ceil(totalPages / 12)) && (
+				<Button onClick={() => setPage(Math.ceil(totalPages / 12))}>
 					<Text as={'span'} color={textColor} _hover={{ textDecoration: 'underline' }}>
-						{Math.ceil(133 / 12)}
+						{Math.ceil(totalPages / 12)}
 					</Text>
 				</Button>
 			)}
