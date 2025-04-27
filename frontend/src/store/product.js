@@ -30,7 +30,7 @@ export const useProductStore = create((set) => ({
 			method: "GET"
 		})
 		const data = await res.json()
-		set({ products: data.data })
+		set({ products: data.data, totalItems: data.totalItems })
 	},
 	deleteProduct: async (pid) => {
 		const res = await fetch(`api/products/${pid}`, {

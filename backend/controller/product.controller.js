@@ -25,10 +25,13 @@ export const getProducts = async (req, res) => {
   
   try {
     const data = await ProductService.getProducts(filter);
-		
+    const total = await ProductService.getProductTotal();
+    
+    
     res.status(200).json({
       success: true,
       data: data,
+      totalItems: total.length
     });
   } catch (error) {
     console.error("Error in fetching products:", error.message);

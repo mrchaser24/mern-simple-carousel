@@ -5,19 +5,18 @@ const createProduct = async (product) =>{
 	return await newProduct.save();
 }
 
-const getProducts = async(filter = null, limit = 10) => {
-	console.log("Filter:", filter);
-	
+const getProducts = async(filter = null, limit = 12) => {
 	let skip = (filter.page - 1) * limit
 	let query = Product.find({});
-	console.log(skip);
-	
 	
 	// if (filter.name) {
 	// 	query = query.sort({filter});
 	// }
 
 	return await query.skip(skip).limit(limit)
+}
+const getProductTotal = async() => {
+	return Product.find({});
 }
 
 const updateProduct = async(id, product) => {
@@ -32,5 +31,6 @@ export default {
 	createProduct, 
 	getProducts, 
 	updateProduct, 
-	deleteProduct
+	deleteProduct,
+	getProductTotal
 }
