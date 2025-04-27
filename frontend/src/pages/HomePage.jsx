@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react'
-import { Container, VStack, Text, SimpleGrid } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { Container, VStack, Text, SimpleGrid, HStack, Spacer } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../store/product'
 import { ProductCard } from '../components/ProductCard'
+import Pagination from '@/components/Pagination'
+import { MdChevronLeft, MdChevronRight  } from "react-icons/md";
 
 const HomePage = () => {
-  const {fetchProducts, products} = useProductStore()
-  const filter = `name=${1}&page=${2}`
+  const {fetchProducts, products, totalItems} = useProductStore()
+  const [currentPage, setCurrentPage] = useState(1)
+  const filter = `name=${1}&page=${currentPage}`
   useEffect(() => {
     console.log("Fetching products...", filter);
-    
     fetchProducts(filter)
-  }, [fetchProducts])
-  console.log(products);
-  
+  }, [fetchProducts, currentPage, filter])
+
 
   return (
     <Container maxW="container.xl" py={12}>
@@ -46,6 +47,23 @@ const HomePage = () => {
             </Text>
           </Link>
         </Text>}
+
+        <HStack 
+          spacing={2} 
+          alignItems={"center"}
+          width={"full"}
+        >
+          <Pagination totalPages={totalItems} currentPage={currentPage} onChange={setCurrentPage}/>
+
+          <Spacer />
+          
+          <Text
+            fontSize="12"
+            textAlign="start"
+          >
+            Total Result: {totalItems} 
+          </Text>
+        </HStack>
       </VStack>
     </Container>
   )

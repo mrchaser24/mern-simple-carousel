@@ -2,8 +2,7 @@ import { Button, Container, Flex, Text, HStack, useColorMode } from '@chakra-ui/
 import { Link } from 'react-router-dom'
 // import { CiSquarePlus } from '@chakra-ui/icons'
 import { CiSquarePlus } from "react-icons/ci";
-import { IoMoon } from "react-icons/io5";
-import { IoSunnyOutline } from "react-icons/io5";
+import { IoMoon, IoSunnyOutline } from "react-icons/io5";
 import React from 'react'
 
 const Navbar = () => {
