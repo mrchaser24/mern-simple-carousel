@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Container, VStack, Text, SimpleGrid, HStack, Spacer } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { useProductStore } from '../store/product'
 import { ProductCard } from '../components/ProductCard'
 import Pagination from '@/components/Pagination'
-import { MdChevronLeft, MdChevronRight  } from "react-icons/md";
 
 const HomePage = () => {
   const {fetchProducts, products, totalItems} = useProductStore()
   const [currentPage, setCurrentPage] = useState(1)
   const filter = `name=${1}&page=${currentPage}`
+
   useEffect(() => {
-    console.log("Fetching products...", filter);
     fetchProducts(filter)
   }, [fetchProducts, currentPage, filter])
 
